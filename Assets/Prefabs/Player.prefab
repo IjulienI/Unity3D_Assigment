@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 401296716482626628}
   - component: {fileID: 554874196026739511}
   - component: {fileID: 3182986272026404941}
+  - component: {fileID: 4293715251779196887}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -348,13 +349,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1980837366289205703}
   weapon: {fileID: 2700743792897235880}
+  crossair: {fileID: 5657446489569615250}
   walkSpeed: 5
   runSpeed: 7
   crouchSpeed: 3.5
   camSpeed: 2
-  baseFov: 40
-  runFov: 45
-  crouchFov: 35
+  baseFov: 60
+  runFov: 65
+  crouchFov: 55
 --- !u!114 &3182986272026404941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +371,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   maxLife: 100
+--- !u!114 &4293715251779196887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159431906402211457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4b411f069fd014099e53049e5bddbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7843057874916618222
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +395,7 @@ GameObject:
   - component: {fileID: 4278705930838220674}
   - component: {fileID: 5657446489569615250}
   m_Layer: 0
-  m_Name: RawImage
+  m_Name: Crossair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
