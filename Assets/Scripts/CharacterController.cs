@@ -14,7 +14,8 @@ public class CharacterController : MonoBehaviour
     private Vector2 mouseInput;
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
-    private bool isSprinting, isCrouching, isScoping;
+    private Vector3 weaponBasePos;
+    private Vector3 weaponScopePos = new Vector3(0,-0.099f,0);
 
 
     private void Awake()
@@ -23,6 +24,7 @@ public class CharacterController : MonoBehaviour
         cam.fieldOfView = baseFov;
         capsuleCollider = GetComponent<CapsuleCollider>();
         baseHeight = capsuleCollider.height;
+        weaponBasePos = weapon.transform.localPosition;
     }
 
     private void Update()
@@ -53,6 +55,16 @@ public class CharacterController : MonoBehaviour
                 speed = crouchSpeed;
                 cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, crouchFov, .05f);
                 capsuleCollider.height = Mathf.Lerp(capsuleCollider.height, crouchHeight, 0.03f);
+                break;
+        }
+
+        switch (action)
+        {
+            case Action.nothing:
+                weapon.transform.localPosition = Vector3.Lerp(weapon.transform.localPosition, weaponBasePos, 0.5f);
+                break;
+            case Action.scope:
+                weapon.transform.localPosition = Vector3.Lerp(weapon.transform.localPosition, weaponScopePos, 0.5f);
                 break;
         }
 
@@ -87,7 +99,12 @@ public class CharacterController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-
+            state = State.walk;
+            action = Action.scope;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            action = Action.nothing;
         }
 
         //Movements
@@ -119,12 +136,5 @@ public class CharacterController : MonoBehaviour
     {
         nothing,
         scope
-    }
-
-    private void ResetBool()
-    {
-        isSprinting = false;
-        isCrouching = false;
-        isScoping = false;
     }
 }
