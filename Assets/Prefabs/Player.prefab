@@ -292,7 +292,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159431906402211457}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 63e48d313c96c424898b170919228602, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -317,7 +317,7 @@ Rigidbody:
   m_GameObject: {fileID: 7159431906402211457}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -350,9 +350,9 @@ MonoBehaviour:
   cam: {fileID: 1980837366289205703}
   weapon: {fileID: 2700743792897235880}
   crossair: {fileID: 5657446489569615250}
-  walkSpeed: 5
-  runSpeed: 7
-  crouchSpeed: 3.5
+  walkSpeed: 10
+  runSpeed: 15
+  crouchSpeed: 5
   camSpeed: 2
   baseFov: 60
   runFov: 65
