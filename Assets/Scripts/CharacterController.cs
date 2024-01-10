@@ -120,18 +120,25 @@ public class CharacterController : MonoBehaviour
         {
             action = Action.nothing;
         }
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+
+        }
 
         //Movements
-        input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-        Vector3 movementZ = transform.forward * input.x;
-        Vector3 movementX = transform.right * input.y;
-        transform.position += (movementX + movementZ) * speed * Time.deltaTime;
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //Vector3 movementZ = transform.forward * input.x;
+        //Vector3 movementX = transform.right * input.y;
+        //transform.position += (movementX + movementZ) * speed * Time.deltaTime;
+
+        Vector3 moveDirection = transform.forward * input.y + transform.right * input.x;
+        rb.AddForce(moveDirection.normalized * speed * Time.deltaTime * 200, ForceMode.Force);
 
         mouseInput += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         transform.rotation = Quaternion.Euler(0, mouseInput.x * camSpeed, 0);
         cam.transform.localRotation = Quaternion.Euler(-mouseInput.y * camSpeed, 0, 0);
 
-        if(input.x / input.y < .5f && input.x / input.y > -.5f && state != State.crouch)
+        if(input.x < .5f && input.y < .5f && input.x > -.5f && input.y > -.5f && state != State.crouch)
         {
             state = State.idle;
         }
