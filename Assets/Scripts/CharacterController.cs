@@ -10,7 +10,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject weapon;
     [SerializeField] private RawImage crossair;
-    [SerializeField] private float walkSpeed, runSpeed, crouchSpeed, camSpeed, baseFov, runFov, crouchFov;
+    [SerializeField] private LayerMask ground;
+    private bool isGrounded;
+    [SerializeField] private float playerHeight, walkSpeed, runSpeed, crouchSpeed, camSpeed, baseFov, runFov, crouchFov;
     private State state;
     private Action action;
     private float speed, baseHeight, crouchHeight;
@@ -34,6 +36,8 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
+
+        SpeedControl();
         //Cases
         switch (state)
         {
@@ -134,10 +138,6 @@ public class CharacterController : MonoBehaviour
         Vector3 moveDirection = transform.forward * input.y + transform.right * input.x;
         rb.AddForce(moveDirection.normalized * speed * Time.deltaTime * 200, ForceMode.Force);
 
-        mouseInput += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        transform.rotation = Quaternion.Euler(0, mouseInput.x * camSpeed, 0);
-        cam.transform.localRotation = Quaternion.Euler(-mouseInput.y * camSpeed, 0, 0);
-
         if(input.x < .5f && input.y < .5f && input.x > -.5f && input.y > -.5f && state != State.crouch)
         {
             state = State.idle;
@@ -145,6 +145,36 @@ public class CharacterController : MonoBehaviour
         else if (state == State.idle)
         {
             state = State.walk;
+        }
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+
+        if(isGrounded)
+        {
+            rb.drag = 5;
+        }
+        else
+        {
+            rb.drag = 0;
+            speed /= 5;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        mouseInput += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        transform.rotation = Quaternion.Euler(0, mouseInput.x * camSpeed, 0);
+        cam.transform.localRotation = Quaternion.Euler(-mouseInput.y * camSpeed, 0, 0);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatvel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if(flatvel.magnitude > speed)
+        {
+            Vector3 limitedVel = flatvel.normalized* speed;
+            rb.velocity = new Vector3(limitedVel.x,rb.velocity.y, limitedVel.z);
         }
     }
 

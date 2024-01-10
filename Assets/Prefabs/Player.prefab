@@ -177,7 +177,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 5cb97e921e218404ca93f4196176c5c4, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -292,7 +292,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159431906402211457}
-  m_Material: {fileID: 13400000, guid: 63e48d313c96c424898b170919228602, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -332,9 +332,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &554874196026739511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,9 +350,13 @@ MonoBehaviour:
   cam: {fileID: 1980837366289205703}
   weapon: {fileID: 2700743792897235880}
   crossair: {fileID: 5657446489569615250}
-  walkSpeed: 10
-  runSpeed: 15
-  crouchSpeed: 5
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
+  playerHeight: 2
+  walkSpeed: 5
+  runSpeed: 8
+  crouchSpeed: 3.5
   camSpeed: 2
   baseFov: 60
   runFov: 65
