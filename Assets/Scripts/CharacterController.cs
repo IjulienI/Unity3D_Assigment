@@ -28,6 +28,7 @@ public class CharacterController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rayDetection = GetComponent<RayDetection>();
         cam.fieldOfView = baseFov;
         capsuleCollider = GetComponent<CapsuleCollider>();
         baseHeight = capsuleCollider.height;
@@ -126,7 +127,7 @@ public class CharacterController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
-
+            rayDetection.Shoot(cam.gameObject);
         }
 
         //Movements
@@ -147,7 +148,7 @@ public class CharacterController : MonoBehaviour
             state = State.walk;
         }
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, ground);
 
         if(isGrounded)
         {

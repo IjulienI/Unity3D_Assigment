@@ -12,7 +12,11 @@ public class RayDetection : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(origin.transform.position, origin.transform.forward, out hit, shootDistance))
         {
-            Debug.DrawRay(origin.transform.position, origin.transform.forward, Color.red, 2f);
+            Debug.DrawLine(origin.transform.position, origin.transform.forward*shootDistance, Color.red, .2f);
+            if(hit.collider.tag == "Player" || hit.collider.tag == "Enemi")
+            {
+                hit.collider.GetComponent<LifeManager>().TakeDamage(5);
+            }
         }
     }
 }
