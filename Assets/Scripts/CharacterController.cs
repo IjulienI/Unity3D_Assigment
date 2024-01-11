@@ -7,28 +7,30 @@ using static UnityEngine.Timeline.AnimationPlayableAsset;
 
 public class CharacterController : MonoBehaviour
 {
+    public static CharacterController instance;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject weapon;
     [SerializeField] private RawImage crossair;
     [SerializeField] private LayerMask ground;
     private bool isGrounded;
+    private bool isScoping;
+    private bool canScope = true;
     [SerializeField] private float playerHeight, walkSpeed, runSpeed, crouchSpeed, camSpeed, baseFov, runFov, crouchFov;
-    private State state;
-    private Action action;
+    public State state;
+    public Action action;
     private float speed, baseHeight, crouchHeight;
     private Vector2 input;
     private Vector2 mouseInput;
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
-    private RayDetection rayDetection;
     private Vector3 weaponBasePos;
     private Vector3 weaponScopePos = new Vector3(0,-0.099f,0);
 
 
     private void Awake()
     {
+        instance = this;
         rb = GetComponent<Rigidbody>();
-        rayDetection = GetComponent<RayDetection>();
         cam.fieldOfView = baseFov;
         capsuleCollider = GetComponent<CapsuleCollider>();
         baseHeight = capsuleCollider.height;
@@ -80,10 +82,12 @@ public class CharacterController : MonoBehaviour
             case Action.nothing:
                 weapon.transform.localPosition = Vector3.Lerp(weapon.transform.localPosition, weaponBasePos, 8.5f * Time.deltaTime);
                 crossair.enabled = true;
+                isScoping = false;
                 break;
             case Action.scope:
                 weapon.transform.localPosition = Vector3.Lerp(weapon.transform.localPosition, weaponScopePos, 28 * Time.deltaTime);
                 crossair.enabled = false;
+                isScoping = true;
                 break;
         }
 
@@ -116,25 +120,10 @@ public class CharacterController : MonoBehaviour
                 state = State.walk;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            state = State.walk;
-            action = Action.scope;
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            action = Action.nothing;
-        }
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            rayDetection.Shoot(cam.gameObject);
-        }
+
 
         //Movements
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //Vector3 movementZ = transform.forward * input.x;
-        //Vector3 movementX = transform.right * input.y;
-        //transform.position += (movementX + movementZ) * speed * Time.deltaTime;
 
         Vector3 moveDirection = transform.forward * input.y + transform.right * input.x;
         rb.AddForce(moveDirection.normalized * speed * Time.deltaTime * 200, ForceMode.Force);
@@ -165,6 +154,14 @@ public class CharacterController : MonoBehaviour
     {
         mouseInput += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         transform.rotation = Quaternion.Euler(0, mouseInput.x * camSpeed, 0);
+        if(mouseInput.y < -50)
+        {
+            mouseInput.y = -50;
+        }
+        else if (mouseInput.y > 45)
+        {
+            mouseInput.y = 45;
+        }
         cam.transform.localRotation = Quaternion.Euler(-mouseInput.y * camSpeed, 0, 0);
     }
 
@@ -179,7 +176,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private enum State
+    public enum State
     {
         idle,
         walk,
@@ -188,9 +185,29 @@ public class CharacterController : MonoBehaviour
         crouch
     }
 
-    private enum Action
+    public enum Action
     {
         nothing,
         scope
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
+    public bool IsScoping()
+    {
+        return isScoping;
+    }
+
+    public void CanScope(bool can)
+    {
+        canScope = can;
+    }
+
+    public bool GetCanScope()
+    {
+        return canScope;
     }
 }
