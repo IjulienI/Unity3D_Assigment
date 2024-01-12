@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float playerHeight, walkSpeed, runSpeed, crouchSpeed, camSpeed, baseFov, runFov, crouchFov;
     public State state;
     public Action action;
-    private float speed, baseHeight, crouchHeight;
+    private float speed, baseHeight, crouchHeight,previousInputY;
     private Vector2 input;
     private Vector2 mouseInput;
     private Rigidbody rb;
@@ -152,17 +152,10 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mouseInput += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        transform.rotation = Quaternion.Euler(0, mouseInput.x * camSpeed, 0);
-        if(mouseInput.y < -50)
-        {
-            mouseInput.y = -50;
-        }
-        else if (mouseInput.y > 45)
-        {
-            mouseInput.y = 45;
-        }
-        cam.transform.localRotation = Quaternion.Euler(-mouseInput.y * camSpeed, 0, 0);
+        mouseInput += new Vector2(Input.GetAxis("Mouse X") * camSpeed * Time.deltaTime, Input.GetAxis("Mouse Y")*camSpeed*Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, mouseInput.x, 0);
+        mouseInput.y = Mathf.Clamp(mouseInput.y, -90f, 90f);
+        cam.transform.localRotation = Quaternion.Euler(-mouseInput.y, 0, 0);
     }
 
     private void SpeedControl()
