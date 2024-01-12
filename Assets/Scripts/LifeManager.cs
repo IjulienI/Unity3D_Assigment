@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
-    [SerializeField] private float life, maxLife;
+    [Header("Settings")]
+    [SerializeField] private float life;
+    [SerializeField] private float maxLife;
 
     public void TakeDamage(float damage)
     {

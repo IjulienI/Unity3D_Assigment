@@ -26,8 +26,6 @@ public class SwayBob : MonoBehaviour
     Vector3 swayPos;
 
     [Header("Sway Rotation")]
-    [SerializeField] private float rotationStep = 4f;
-    [SerializeField] private float maxRotationStep = 5f;
     [SerializeField] private float smoothRot = 12f;
     Vector3 swayEulerRot;
 
