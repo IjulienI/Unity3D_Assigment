@@ -11,4 +11,9 @@ public class GameManager : MonoBehaviour
 
         Application.targetFrameRate = 144;
     }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 100, 20), Mathf.RoundToInt(1/Time.deltaTime).ToString());
+    }
 }
