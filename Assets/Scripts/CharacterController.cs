@@ -152,7 +152,7 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mouseInput += new Vector2(Input.GetAxis("Mouse X") * camSpeed * Time.deltaTime, Input.GetAxis("Mouse Y")*camSpeed*Time.deltaTime);
+        mouseInput += new Vector2(Input.GetAxis("Mouse X") * camSpeed * Time.fixedDeltaTime, Input.GetAxis("Mouse Y")*camSpeed*Time.fixedDeltaTime);
         transform.rotation = Quaternion.Euler(0, mouseInput.x, 0);
         mouseInput.y = Mathf.Clamp(mouseInput.y, -90f, 90f);
         cam.transform.localRotation = Quaternion.Euler(-mouseInput.y, 0, 0);
