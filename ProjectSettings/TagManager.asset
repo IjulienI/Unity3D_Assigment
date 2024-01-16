@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Stairs
+  - Interactible
   layers:
   - Default
   - TransparentFX
