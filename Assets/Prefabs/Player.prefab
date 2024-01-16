@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2989938922338559481}
   - component: {fileID: 1047056415434910460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184040, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_Name
-      value: SM_Wep_PistolSwat_01
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 474350, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -587,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474350, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.49
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 474350, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_LocalRotation.w
@@ -654,10 +654,15 @@ PrefabInstance:
       value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 8387715819277724610, guid: 5e41505804200314f8239458ca194166, type: 3}
+      propertyPath: checkDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387715819277724610, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: clipProjector
       value: 
       objectReference: {fileID: 5057701555999688568}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1284418098124893446, guid: 5e41505804200314f8239458ca194166, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
