@@ -34,6 +34,7 @@ public class CharacterController : MonoBehaviour
     //Privates bool
     private bool isGrounded;
     private bool onStairs;
+    private bool canInteract = true;
 
     //Private floats
     private float speed, baseHeight,stairsRunSpeed,stairsWalkSpeed,stairsCrouchSpeed,playerHeight;
@@ -52,7 +53,6 @@ public class CharacterController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //weaponBasePos = weapon.transform.localPosition;
     }
 
     private void Start()
@@ -193,10 +193,10 @@ public class CharacterController : MonoBehaviour
         switch (action)
         {
             case Action.nothing:
-                crossair.enabled = true;
+                if(crossair != null) crossair.enabled = true;
                 break;
             case Action.scope:
-                crossair.enabled = false;
+                if (crossair != null) crossair.enabled = false;
                 break;
         }
     }
@@ -294,5 +294,15 @@ public class CharacterController : MonoBehaviour
     public bool IsGrounded()
     {
         return isGrounded;
+    }
+
+    public bool CanInteract()
+    {
+        return canInteract;
+    }
+
+    public void ChangeInteract(bool value)
+    {
+        canInteract = value;
     }
 }

@@ -54,11 +54,13 @@ public class Scoping : MonoBehaviour
     private void Scope()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, scopePos, 28 * Time.deltaTime);
+        CharacterController.instance.ChangeInteract(false);
     }
 
     private void UnScope()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, basePos, 8.5f * Time.deltaTime);
+        CharacterController.instance.ChangeInteract(true);
     }
 
     public void SetCanScope(bool value)

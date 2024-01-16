@@ -16,7 +16,7 @@ public class interact : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && CharacterController.instance.CanInteract())
         {
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, distance))
             {
