@@ -10,14 +10,14 @@ public class SwayBob : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [Header("Settings")]
-    [SerializeField] private bool sway,swayRotation,bobOffset,bobSway;
+    [SerializeField] private bool sway;
+    [SerializeField] private bool swayRotation;
+    [SerializeField] private bool bobOffset,bobSway;
     private Vector3 originalPos;
-    private Vector3 scopePos = new Vector3(0, -0.099f, 0);
+    private Vector3 scopePos;
     private Vector3 pos;
     private float originalSmooth;
-    private float scopeSmooth = .5f;
     private float originalRotSmooth;
-    private float scopeRotSmooth = .5f;
 
     [Header("Sway")]
     [SerializeField] private float step = 0.01f;
@@ -26,8 +26,6 @@ public class SwayBob : MonoBehaviour
     Vector3 swayPos;
 
     [Header("Sway Rotation")]
-    [SerializeField] private float rotationStep = 4f;
-    [SerializeField] private float maxRotationStep = 5f;
     [SerializeField] private float smoothRot = 12f;
     Vector3 swayEulerRot;
 
@@ -46,13 +44,12 @@ public class SwayBob : MonoBehaviour
     [SerializeField] private Vector3 multiplier;
     private Vector3 bobEulerRotation;
 
-    private bool scope;
-
     private void Awake()
     {
         originalPos = transform.localPosition;
         originalSmooth = smooth;
         originalRotSmooth = smoothRot;
+        scopePos = GetComponent<Scoping>().GetScopePos();
     }
 
     private void Update()
@@ -64,17 +61,17 @@ public class SwayBob : MonoBehaviour
 
         CompositePositionRotation();
 
-        if (!CharacterController.instance.IsScoping() && !scope)
+        if (GetComponent<Scoping>().IsScoping())
         {
             pos = scopePos;
-            smooth = originalSmooth;
-            smoothRot = originalRotSmooth;
+            smooth = originalSmooth /3;
+            smoothRot = originalRotSmooth /3;
         }
         else
         {
             pos = originalPos;
-            smooth = scopeSmooth;
-            smoothRot = scopeRotSmooth;
+            smooth = originalSmooth;
+            smoothRot = originalRotSmooth;
         }
     }
 
@@ -126,7 +123,7 @@ public class SwayBob : MonoBehaviour
         if (bobSway == false) { bobEulerRotation = Vector3.zero; return; }
 
         bobEulerRotation.x = (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero ? multiplier.x * (Mathf.Sin(2 * speedCurve)) :
-                                                                                                                multiplier.x * (Mathf.Sin(2 * speedCurve) / 2));
+                                                                                                                    multiplier.x * (Mathf.Sin(2 * speedCurve) / 2));
         bobEulerRotation.y = (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero ? multiplier.y * curveCos : 0);
         bobEulerRotation.z = (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero ? multiplier.z * curveCos * Input.GetAxis("Horizontal") : 0);
     }

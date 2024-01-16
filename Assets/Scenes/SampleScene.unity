@@ -184,6 +184,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 197942, guid: d7cd1485aba3f5e4f878fb305c3c5170, type: 3}
+      propertyPath: m_TagString
+      value: Stairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 197942, guid: d7cd1485aba3f5e4f878fb305c3c5170, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 18
       objectReference: {fileID: 0}
@@ -739,11 +743,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 328118696822979646, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.037646294
+      value: 0.766
       objectReference: {fileID: 0}
     - target: {fileID: 328118696822979646, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.1000805
+      value: 14.407
       objectReference: {fileID: 0}
     - target: {fileID: 328118696822979646, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -773,17 +777,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1097998013925007581, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997706475300571145, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.801
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997706475300731407, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_Name
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 1999178935440943626, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: camSpeed
-      value: 350
+      propertyPath: weapon
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3759235508733505733, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4855250732527738726, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8060986402247532325, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: checkDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -847,6 +863,10 @@ PrefabInstance:
     - target: {fileID: 197942, guid: d7cd1485aba3f5e4f878fb305c3c5170, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 197942, guid: d7cd1485aba3f5e4f878fb305c3c5170, type: 3}
+      propertyPath: m_TagString
+      value: Stairs
       objectReference: {fileID: 0}
     - target: {fileID: 197942, guid: d7cd1485aba3f5e4f878fb305c3c5170, type: 3}
       propertyPath: m_StaticEditorFlags

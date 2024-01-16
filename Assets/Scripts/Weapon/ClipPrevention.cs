@@ -16,12 +16,12 @@ public class ClipPrevention : MonoBehaviour
         if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance))
         {
             lerpPos = 1 - (hit.distance / checkDistance);
-            CharacterController.instance.CanScope(false);
+            GetComponent<Scoping>().SetCanScope(false);
         }
         else
         {
             lerpPos = 0;
-            CharacterController.instance.CanScope(true);
+            GetComponent<Scoping>().SetCanScope(true);
         }
 
         Mathf.Clamp01(lerpPos);
