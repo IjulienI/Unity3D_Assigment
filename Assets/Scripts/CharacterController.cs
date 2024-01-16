@@ -33,8 +33,6 @@ public class CharacterController : MonoBehaviour
 
     //Privates bool
     private bool isGrounded;
-    private bool isScoping;
-    private bool canScope = true;
     private bool onStairs;
 
     //Private floats
@@ -196,11 +194,9 @@ public class CharacterController : MonoBehaviour
         {
             case Action.nothing:
                 crossair.enabled = true;
-                isScoping = false;
                 break;
             case Action.scope:
                 crossair.enabled = false;
-                isScoping = true;
                 break;
         }
     }
@@ -298,19 +294,5 @@ public class CharacterController : MonoBehaviour
     public bool IsGrounded()
     {
         return isGrounded;
-    }
-
-    public bool IsScoping()
-    {
-        return isScoping;
-    }
-
-    public void CanScope(bool can)
-    {
-        canScope = can;
-    }
-    public bool GetCanScope()
-    {
-        return canScope;
     }
 }

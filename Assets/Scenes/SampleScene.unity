@@ -777,49 +777,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 720462884848227843, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
+    - target: {fileID: 1097998013925007581, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 720462884848227843, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
+    - target: {fileID: 1997706475300571145, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.801
       objectReference: {fileID: 0}
-    - target: {fileID: 1241445868559519940, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: scopePos.y
-      value: -0.099
-      objectReference: {fileID: 0}
-    - target: {fileID: 1907335350878640959, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: checkDistance
-      value: 0.5
+    - target: {fileID: 1997706475300731407, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: m_Name
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 1999178935440943626, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: camSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999178935440943626, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: crouchHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999178935440943626, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: playerHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999178935440943626, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: stairsMultiplier
-      value: 2
+      propertyPath: weapon
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3759235508733505733, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4855250732527738726, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5272928050637400019, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.191
+    - target: {fileID: 8060986402247532325, guid: e95c1a8549c067c43ace2a1dda3783a6, type: 3}
+      propertyPath: checkDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

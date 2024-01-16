@@ -6,7 +6,8 @@ public class Scoping : MonoBehaviour
 {
     [SerializeField] private Vector3 scopePos;
     private Vector3 basePos;
-    private bool isScoping;
+    private bool canScope;
+    private bool scoping;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class Scoping : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            if (CharacterController.instance.GetCanScope())
+            if (canScope)
             {
                 if(CharacterController.instance.state == CharacterController.State.crouch)
                 {
@@ -27,21 +28,26 @@ public class Scoping : MonoBehaviour
                     CharacterController.instance.state = CharacterController.State.walk;
                 }
                 Scope();
+                scoping = true;
                 
                 CharacterController.instance.action = CharacterController.Action.scope;
             }
             else
             {
                 CharacterController.instance.action = CharacterController.Action.nothing;
+                UnScope();
+                scoping = false;
             }
         }
         else
         {
             UnScope();
+            scoping = false;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1) && CharacterController.instance.action == CharacterController.Action.scope)
         {
             CharacterController.instance.action = CharacterController.Action.nothing;
+            scoping = false;
         }
     }
 
@@ -53,5 +59,20 @@ public class Scoping : MonoBehaviour
     private void UnScope()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, basePos, 8.5f * Time.deltaTime);
+    }
+
+    public void SetCanScope(bool value)
+    {
+        canScope = value;
+    }
+
+    public Vector3 GetScopePos()
+    {
+        return scopePos;
+    }
+
+    public bool IsScoping()
+    {
+        return scoping;
     }
 }
