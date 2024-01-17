@@ -94,7 +94,7 @@ public class Door : MonoBehaviour, IInteractible
             {
                 secondDoor.transform.rotation = Quaternion.Slerp(secondDoor.transform.rotation,Quaternion.Inverse(rotation), speed * Time.deltaTime);
             }
-            if (Mathf.Abs(door.transform.rotation.y - rotation.y) < 0.01f)
+            if (Mathf.Abs(door.transform.rotation.y - rotation.y) < 0.02f)
             {
                 opening = false;
                 open = !open;
