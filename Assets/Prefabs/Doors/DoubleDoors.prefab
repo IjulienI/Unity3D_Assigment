@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 764268315217683036}
   - component: {fileID: 6417318826913314207}
   - component: {fileID: 6723206464998097482}
+  - component: {fileID: 3972396401198131131}
   m_Layer: 0
   m_Name: DoubleDoors
   m_TagString: Untagged
@@ -73,6 +74,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.269528, y: 2.2368557, z: 0.34422302}
   m_Center: {x: 0.34071898, y: -0.077011704, z: -0.26311493}
+--- !u!114 &3972396401198131131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321097524530351609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c51ed4b8f5eec04f820fa86ee0fa7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 2
 --- !u!1001 &3557685033907963733
 PrefabInstance:
   m_ObjectHideFlags: 0
