@@ -32,7 +32,7 @@ public class interact : MonoBehaviour
                     {
                         IndicatorState(false);
                     }
-                    Debug.DrawLine(cam.transform.position, hit.point, Color.green, .1f);
+                    Debug.DrawLine(cam.transform.position, hit.point, Color.yellow, .1f);
                     IndicatorState(true);
                 }
                 else
