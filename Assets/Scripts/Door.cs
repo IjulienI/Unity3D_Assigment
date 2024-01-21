@@ -16,7 +16,7 @@ public class Door : MonoBehaviour, IInteractible
     private bool locked;
     private bool opening;
     private Quaternion rotation;
-    private Quaternion baseRot;
+    private Quaternion baseRot = Quaternion.Euler(0, 0, 0);
     private bool open;
     private float hitBoxSize;
     private float hitBoxCenter;
@@ -31,7 +31,6 @@ public class Door : MonoBehaviour, IInteractible
     }
     private void Awake()
     {
-        baseRot = transform.rotation;
         hitBoxSize = GetComponent<BoxCollider>().size.z;
         hitBoxCenter = GetComponent<BoxCollider>().center.z;
     }
@@ -45,14 +44,14 @@ public class Door : MonoBehaviour, IInteractible
     {
         if(other.tag == "Enemie" && !opening)
         {
-            if (Vector3.Dot(transform.forward, other.transform.position - transform.position) < 0)
+            if (Vector3.Dot(transform.forward, other.transform.localPosition - transform.localPosition) < 0)
             {
-                rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y - angle, transform.rotation.z));
+                rotation = Quaternion.Euler(new Vector3(transform.localRotation.x, transform.localRotation.y - angle, transform.localRotation.z));
                 opening = true;
             }
             else
             {
-                rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y + angle, transform.rotation.z));
+                rotation = Quaternion.Euler(new Vector3(transform.localRotation.x, transform.localRotation.y + angle, transform.localRotation.z));
                 opening = true;
             }
         }
@@ -62,7 +61,7 @@ public class Door : MonoBehaviour, IInteractible
     {
         if (!open)
         {
-            if (Vector3.Dot(transform.forward, CharacterController.instance.gameObject.transform.position - transform.position) < 0)
+            if (Vector3.Dot(transform.forward, CharacterController.instance.gameObject.transform.localPosition - transform.localPosition) < 0)
             {
                 forward = false;
             }
@@ -83,11 +82,11 @@ public class Door : MonoBehaviour, IInteractible
         {
             if (forward)
             {
-                rotation = Quaternion.Euler(new Vector3(door.transform.rotation.x, door.transform.rotation.y - angle, door.transform.rotation.z));
+                rotation = Quaternion.Euler(new Vector3(door.transform.localRotation.x, door.transform.localRotation.y - angle, door.transform.localRotation.z));
             }
             else
             {
-                rotation = Quaternion.Euler(new Vector3(door.transform.rotation.x, door.transform.rotation.y + angle, door.transform.rotation.z));
+                rotation = Quaternion.Euler(new Vector3(door.transform.localRotation.x, door.transform.localRotation.y + angle, door.transform.localRotation.z));
             }
             opening = true;
         }
@@ -96,12 +95,12 @@ public class Door : MonoBehaviour, IInteractible
     {
         if (opening)
         {
-            door.transform.rotation = Quaternion.Slerp(door.transform.rotation, rotation, speed * Time.deltaTime);
+            door.transform.localRotation = Quaternion.Slerp(door.transform.localRotation, rotation, speed * Time.deltaTime);
             if(doubleDoor)
             {
-                secondDoor.transform.rotation = Quaternion.Slerp(secondDoor.transform.rotation,Quaternion.Inverse(rotation), speed * Time.deltaTime);
+                secondDoor.transform.localRotation = Quaternion.Slerp(secondDoor.transform.localRotation,Quaternion.Inverse(rotation), speed * Time.deltaTime);
             }
-            if (Mathf.Abs(door.transform.rotation.y - rotation.y) < 0.02f)
+            if (Mathf.Abs(door.transform.localRotation.y - rotation.y) < 0.02f)
             {
                 opening = false; 
                 open = !open;
