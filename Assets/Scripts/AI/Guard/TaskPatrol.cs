@@ -16,11 +16,12 @@ public class TaskPatrol : Node
     private float _waitCounter = 0f;
     private bool _waiting = false;
 
-    private bool _isWalking = false;
+    private Animator _animator;
     public TaskPatrol(Transform transform, Transform[] waypoints)
     {
         _transform = transform;
         _waypoints = waypoints;
+        _animator = transform.GetComponent<Animator>();
     }
 
     public override NodeState Evaluate()
@@ -30,6 +31,7 @@ public class TaskPatrol : Node
             _waitCounter += Time.deltaTime;
             if (_waitCounter >= _waitTime)
                 _waiting = false;
+            _animator.SetBool("Walking", true);
         }
         else
         {
@@ -39,18 +41,15 @@ public class TaskPatrol : Node
                 _transform.position = wp.position;
                 _waitCounter = 0f;
                 _waiting = true;
-
+                
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
+                _animator.SetBool("Walking", false);
             }
             else
             {
                 _transform.position = Vector3.MoveTowards(_transform.position, wp.position, GuardBT.speed = Time.deltaTime);
                 _transform.LookAt(wp.position);
             }
-        }
-        if (_isWalking)
-        {
-
         }
 
         state = NodeState.RUNNING;
