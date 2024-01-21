@@ -10,10 +10,16 @@ public class ClipPrevention : MonoBehaviour
 
     private float lerpPos;
     private RaycastHit hit;
+    private int layermask;
+
+    private void Start()
+    {
+        layermask = LayerMask.GetMask("Default");
+    }
 
     private void Update()
     {
-        if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance))
+        if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance,layermask))
         {
             lerpPos = 1 - (hit.distance / checkDistance);
             GetComponent<Scoping>().SetCanScope(false);

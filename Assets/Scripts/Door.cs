@@ -18,6 +18,8 @@ public class Door : MonoBehaviour, IInteractible
     private Quaternion rotation;
     private Quaternion baseRot;
     private bool open;
+    private float hitBoxSize;
+    private float hitBoxCenter;
     
     public void Interact()
     {
@@ -30,6 +32,8 @@ public class Door : MonoBehaviour, IInteractible
     private void Awake()
     {
         baseRot = transform.rotation;
+        hitBoxSize = GetComponent<BoxCollider>().size.z;
+        hitBoxCenter = GetComponent<BoxCollider>().center.z;
     }
 
     private void Update()
@@ -56,13 +60,16 @@ public class Door : MonoBehaviour, IInteractible
 
     private void SetForward()
     {
-        if (Vector3.Dot(transform.forward, CharacterController.instance.gameObject.transform.position - transform.position) < 0)
+        if (!open)
         {
-            forward = false;
-        }
-        else
-        {
-            forward = true;
+            if (Vector3.Dot(transform.forward, CharacterController.instance.gameObject.transform.position - transform.position) < 0)
+            {
+                forward = false;
+            }
+            else
+            {
+                forward = true;
+            }
         }
     }
     private void SetRotation()
@@ -96,8 +103,36 @@ public class Door : MonoBehaviour, IInteractible
             }
             if (Mathf.Abs(door.transform.rotation.y - rotation.y) < 0.02f)
             {
-                opening = false;
+                opening = false; 
                 open = !open;
+                if (open)
+                {
+                    GetComponent<BoxCollider>().size += new Vector3(0, 0, hitBoxSize);
+                    if(forward)
+                    {
+
+                        GetComponent<BoxCollider>().center += new Vector3(0, 0, hitBoxCenter * 2);
+                    }
+                    else
+                    {
+
+                        GetComponent<BoxCollider>().center -= new Vector3(0, 0, hitBoxCenter * 2);
+                    }
+                }
+                else
+                {
+                    GetComponent<BoxCollider>().size -= new Vector3(0, 0, hitBoxSize);
+                    if (forward)
+                    {
+
+                        GetComponent<BoxCollider>().center -= new Vector3(0, 0, hitBoxCenter * 2);
+                    }
+                    else
+                    {
+
+                        GetComponent<BoxCollider>().center += new Vector3(0, 0, hitBoxCenter * 2);
+                    }
+                }
             }
         }
     }
