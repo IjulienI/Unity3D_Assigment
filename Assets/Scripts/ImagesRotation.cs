@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ImagesRotation : MonoBehaviour
 {
-    [SerializeField] private RawImage image;
 
     private void Update()
     {
