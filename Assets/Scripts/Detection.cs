@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -26,7 +27,7 @@ public class Detection : MonoBehaviour
     private void Update()
     {        
         if (Triggered && GameManager.instance.detectable && activate)
-        {            
+        {
             if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position);
@@ -37,7 +38,7 @@ public class Detection : MonoBehaviour
                     CharacterController.instance.gameObject.GetComponent<StressManager>().AddStress(.2f);
                     if (time > detectionTime)
                     {
-
+                        SceneManager.LoadScene("GAMEOVER");
                     }
                 }
             }

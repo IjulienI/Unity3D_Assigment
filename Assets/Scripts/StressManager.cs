@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StressManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class StressManager : MonoBehaviour
 
     [SerializeField] private float timeForDecrease;
     [SerializeField] private float speed;
+    [SerializeField] private Slider stressbar;
 
     private float timer;
 
@@ -24,6 +27,8 @@ public class StressManager : MonoBehaviour
         {
             timer += 1 * Time.deltaTime;
         }
+
+        stressbar.value = stress / maxStress;
     }
 
 
@@ -32,7 +37,7 @@ public class StressManager : MonoBehaviour
         stress += amount;
         if(stress >= maxStress)
         {
-            Debug.Log("End");
+            SceneManager.LoadScene("GAMEOVER");
         }
         timer = 0;
     }
