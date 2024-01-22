@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EXTRACT.unity
     guid: 1f9f93f19593f8341b2661181fb8e3db
+  - enabled: 1
+    path: Assets/Scenes/GAMEOVER.unity
+    guid: 03a2417876fdd3741ab6e87f31dbeb99
   m_configObjects: {}
