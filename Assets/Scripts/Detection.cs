@@ -13,6 +13,7 @@ public class Detection : MonoBehaviour
     private bool Triggered;
     private GameObject player;
     private Color baseColor;
+    private bool activate = true;
 
     private RaycastHit hit;
 
@@ -24,14 +25,16 @@ public class Detection : MonoBehaviour
 
     private void Update()
     {        
-        if (Triggered && GameManager.instance.detectable)
+        if (Triggered && GameManager.instance.detectable && activate)
         {            
-            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, ~LayerMask.GetMask("Enemy")))
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position);
+                Debug.Log(hit.collider.tag);
                 if (hit.collider.tag == "Player")
                 {
                     time += (speed / hit.distance) * Time.deltaTime;
+                    CharacterController.instance.gameObject.GetComponent<StressManager>().AddStress(.2f);
                     if (time > detectionTime)
                     {
 
@@ -72,5 +75,10 @@ public class Detection : MonoBehaviour
         {
             Triggered = false;
         }
+    }
+
+    public void SetActivate(bool state)
+    {
+        activate = state;
     }
 }

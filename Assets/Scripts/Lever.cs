@@ -26,7 +26,7 @@ public class Lever : MonoBehaviour, IInteractible
             }
             else if (type == Type.Camera)
             {
-
+                obj.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Detection>().SetActivate(!open);
             }
         }
     }
