@@ -27,7 +27,7 @@ public class Detection : MonoBehaviour
     {        
         if (Triggered && GameManager.instance.detectable && activate)
         {            
-            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, ~LayerMask.GetMask("Enemy")))
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position);
                 Debug.Log(hit.collider.tag);
