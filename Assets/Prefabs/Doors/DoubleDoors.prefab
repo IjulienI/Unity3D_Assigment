@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6417318826913314207}
   - component: {fileID: 6723206464998097482}
   - component: {fileID: 3972396401198131131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoubleDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   angle: 85
   doubleDoor: 1
   secondDoor: {fileID: 3557685033907841047}
+  locked: 1
 --- !u!65 &6723206464998097482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,8 +73,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.269528, y: 2.2368557, z: 0.34422302}
-  m_Center: {x: 0.34071898, y: -0.077011704, z: -0.26311493}
+  m_Size: {x: 2.27, y: 2.23, z: 0.35}
+  m_Center: {x: 0.34, y: 0, z: -0.26}
 --- !u!114 &3972396401198131131
 MonoBehaviour:
   m_ObjectHideFlags: 0

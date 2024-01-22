@@ -53,6 +53,9 @@ public class interact : MonoBehaviour
 
     private void IndicatorState(bool state)
     {
-        indicator.enabled = state;
+        if (indicator != null)
+        {
+            indicator.enabled = state;
+        }
     }
 }
