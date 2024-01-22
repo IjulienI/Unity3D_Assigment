@@ -12,8 +12,8 @@ public class Door : MonoBehaviour, IInteractible
     [Header("Special")]
     [SerializeField] private bool doubleDoor;
     [SerializeField] private GameObject secondDoor;
-    private bool forward;
-    private bool locked;
+    [SerializeField] private bool locked;
+    private bool forward;    
     private bool opening;
     private Quaternion rotation;
     private Quaternion baseRot = Quaternion.Euler(0, 0, 0);
@@ -133,6 +133,14 @@ public class Door : MonoBehaviour, IInteractible
                     }
                 }
             }
+        }
+    }
+    public void SetLock(bool state)
+    {
+        locked = state;
+        if(locked && open)
+        {
+            SetRotation();
         }
     }
 }
