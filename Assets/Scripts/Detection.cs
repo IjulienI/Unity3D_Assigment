@@ -1,38 +1,61 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Detection : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float detectionTime;
     [SerializeField] float speed;
+    [SerializeField] GameObject warning;
 
     private float time;
     private bool Triggered;
     private GameObject player;
+    private Color baseColor;
 
     private RaycastHit hit;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        baseColor = warning.GetComponent<RawImage>().color;
     }
 
     private void Update()
-    {
-        Debug.DrawRay(transform.position, transform.position - player.transform.position);
-        if (Triggered)
-        {
-            if (Physics.Raycast(transform.position, transform.position - player.transform.position, out hit))
+    {        
+        if (Triggered && GameManager.instance.detectable)
+        {            
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
             {
+                Debug.DrawRay(transform.position, player.transform.position - transform.position);
                 if (hit.collider.tag == "Player")
                 {
                     time += (speed / hit.distance) * Time.deltaTime;
                     if (time > detectionTime)
                     {
-                        Debug.Log("Detected");
+
                     }
                 }
             }
+        }
+        else
+        {
+            time -= (speed / hit.distance) * Time.deltaTime;
+            if(time < 0)
+            {
+                time = 0;
+            }
+        }
+
+        if(time > 0)
+        {
+            warning.SetActive(true);
+            warning.GetComponent<RawImage>().color = Color.Lerp(baseColor, Color.red, time);
+        }
+        else
+        {
+            warning.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other)

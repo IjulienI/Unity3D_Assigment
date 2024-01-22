@@ -43,4 +43,17 @@ public class ChangeItems : MonoBehaviour
         }
         items[index].SetActive(true);
     }
+
+    public void AddItem(GameObject item)
+    {
+        items.Add(item);
+        index--;
+    }
+
+    public void RemoveItem(GameObject item)
+    {
+        items.Remove(item);
+        Destroy(item);
+        UpdateItem();
+    }
 }
