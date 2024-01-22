@@ -16,7 +16,7 @@ public class CheckEnemyInFOVRange : Node
 
     public override NodeState Evaluate()
     {
-        object t = GetData("target");
+        object t = GetData("Player");
         if (t == null)
         {
             Collider[] colliders = Physics.OverlapSphere(
@@ -24,7 +24,7 @@ public class CheckEnemyInFOVRange : Node
 
             if (colliders.Length > 0)
             {
-                parent.parent.SetData("target", colliders[0].transform);
+                parent.parent.SetData("Player", colliders[0].transform);
                 _animator.SetBool("Walking", true);
                 state = NodeState.SUCCESS;
                 return state;

@@ -15,7 +15,7 @@ public class TaskGoToTarget : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("target");
+        Transform target = (Transform)GetData("Player");
 
         if (Vector3.Distance(_transform.position, target.position) > 0.01f)
         {
