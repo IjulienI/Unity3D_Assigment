@@ -21,10 +21,11 @@ public class TaskGoToTarget : Node
         {
             _transform.position = Vector3.MoveTowards(
                 _transform.position, target.position, GuardBT.speed * Time.deltaTime);
-            _transform.LookAt(target.position);
+
+            _transform.rotation = Quaternion.Euler(0f, _transform.rotation.eulerAngles.y, 0f);
         }
 
-        state = NodeState.RUNNING; 
+        state = NodeState.RUNNING;
         return state;
     }
 }
